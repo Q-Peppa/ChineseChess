@@ -1,0 +1,126 @@
+:root {
+    --block-height: 90px;
+    --block-width: 90px;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#app{
+
+    user-select: none;
+    margin-left: calc(2 * var(--block-width));
+    margin-top: calc( 1 * var(--block-width));
+    position: relative;
+    .middle{
+        font-family: "LXGW WenKai Mono TC", monospace;
+        font-weight: bold;
+        position: absolute;
+        height: calc(var(--block-height) * 1 );
+        width: calc(var(--block-width) * 8 );
+        background: #cecece;
+        top: calc(var(--block-height) * 4 );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: calc(var(--block-height) * 5 );
+        border-block: 1px black solid;
+        border-inline: 2px black solid;
+        p {
+            /*font-size:var(--block-height);*/
+            line-height: 1;
+            font-size: 40px;
+        }
+    }
+
+    .chess{
+        z-index: 1;
+
+        position: absolute;
+        background: #e6d3a7;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+        font-size: 2.5em;
+        font-weight: 900;
+        font-family: FangSong, serif
+    }
+    .black-chess{
+        z-index: 2;
+        cursor: pointer;     /* 手型光标 */
+        background: #323232;    /* 黑棋底色（深灰/黑） */
+        color: #fff;
+        border: 3px solid #4a4a4a;  /* 深色边框 */
+        box-shadow:
+                2px 2px 5px rgba(0, 0, 0, 0.5),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.2),  /* 轻微内发光 */
+                inset -1px -1px 2px rgba(0, 0, 0, 0.6);      /* 底部阴影加深 */
+        text-shadow:
+                1px 1px 1px rgba(0, 0, 0, 0.5),     /* 黑色文字阴影 */
+                -1px -1px 1px rgba(255, 255, 255, 0.3); /* 亮光浮雕效果 */
+    }
+    .black-chess:hover, .red-chess:hover{
+        /*transform: scale(1.05) translateY(-3px); !* 放大5% + 上浮3px *!*/
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 增加悬浮投影 */
+        cursor: pointer; /* 鼠标变手型 */
+    }
+    .red-chess {
+        z-index: 2;
+        cursor: pointer;     /* 手型光标 */
+        background: #e74c3c;   /* 鲜艳的红色（中国象棋风） */
+        color: #fff;
+        border: 3px solid #c0392b;  /* 深红色边框 */
+        box-shadow:
+                2px 2px 5px rgba(0, 0, 0, 0.3),
+                inset 1px 1px 3px rgba(255, 255, 255, 0.4),  /* 内高光 */
+                inset -1px -1px 3px rgba(0, 0, 0, 0.5);      /* 内阴影 */
+        text-shadow:
+                1px 1px 1px rgba(0, 0, 0, 0.3),     /* 红棋文字阴影 */
+                -1px -1px 1px rgba(255, 255, 255, 0.2); /* 亮光浮雕 */
+    }
+
+
+
+    .palace-line {
+        position: absolute;
+        height: 2px;
+        background: black;
+        z-index: 0;
+    }
+}
+body {
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.board{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat( 8 , var(--block-width));
+    grid-template-rows: repeat( 9, var(--block-height));
+    .block {
+        width: var(--block-width);
+        height:  var(--block-height);
+        border: 1px solid black;
+    }
+
+}
+#app > .status{
+    position: absolute;
+    left: 800px;
+    top: 400px;
+}
+div.chess.placeholder-chess{
+    /*display: none !important;*/
+    background: transparent !important;
+    color: transparent !important;
+}
+.group{
+
+    position: absolute;
+    bottom: -30px;
+    left: 800px;
+}
