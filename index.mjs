@@ -7,6 +7,20 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 (function () {
+    function initGame() {
+        drawChessPos(blackMap, false)
+        drawChessPos(redMap, true)
+        document.querySelectorAll(".placeholder-chess").forEach(el=>{
+            el.remove();
+        })
+        Object.keys(emptyMap).forEach(key => {
+            emptyMap[key].forEach(([x, y] ) => {
+                const div = createChess(key, x, y, "placeholder-chess",);
+                document.getElementById("app").appendChild(div);
+            });
+        });
+    }
+
     for(let i = 0; i < 72 ; i++) {
         const  div = document.createElement("div");
         div.className = 'block'
@@ -22,20 +36,6 @@ const $$ = document.querySelectorAll.bind(document);
     $(".reset").addEventListener("click", () => {
         initPos();
         initGame();
-        console.log(1, blackMap, redMap)
     })
 })()
 
-
-
-
-function initGame() {
-    drawChessPos(blackMap, false)
-    drawChessPos(redMap, true)
-    Object.keys(emptyMap).forEach(key => {
-        emptyMap[key].forEach(([x, y] ) => {
-            const div = createChess(key, x, y, "placeholder-chess",);
-            document.getElementById("app").appendChild(div);
-        });
-    });
-}
