@@ -30,6 +30,8 @@ npm install postcss @rollup/plugin-html rollup-plugin-postcss --save-dev
 - 点击棋子后，提示可以移动的位置信息
 - 每走一步之后棋谱的录入
 
+## 项目说明
+本项目未使用前端框架，仅使用JavaScript和CSS进行开发，适合前端新手上手。
 
 
 ## 项目截图
