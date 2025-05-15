@@ -103,11 +103,16 @@ const fn = (event)=>{
             status.textContent = `当前轮到 ${turn === RED ? "红色" : "黑色"}`
         }
 }
-const initRun = () => {
+
+export const initStatus = ()=>{
     turn = RED
     const status = document.querySelector(".status p")
     status.textContent = `当前轮到 ${turn === RED ? "红色" : "黑色"}`
     selectedChess = null
+    end = false
+}
+const initRun = () => {
+    initStatus()
     document.body.addEventListener("click", (event) => {
         event.preventDefault();
         const target = event.target;
@@ -115,7 +120,6 @@ const initRun = () => {
         console.log(target);
         fn(event);
     })
-
 };
 
 

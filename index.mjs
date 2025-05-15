@@ -1,6 +1,6 @@
 import {blackMap, emptyMap, redMap, initPos} from "./src/lib/pos.mjs"
 import {createChess, drawChessPos, drawNinePalaces} from "./src/lib/draw.mjs";
-import initRun from "./src/lib/initRun.mjs";
+import initRun, {initStatus} from "./src/lib/initRun.mjs";
 // import "./src/css/main.css"
 
 const $ = document.querySelector.bind(document);
@@ -10,7 +10,7 @@ const $$ = document.querySelectorAll.bind(document);
     function initGame() {
         drawChessPos(blackMap, false)
         drawChessPos(redMap, true)
-        document.querySelectorAll(".placeholder-chess").forEach(el=>{
+        $$(".placeholder-chess").forEach(el=>{
             el.remove();
         })
         Object.keys(emptyMap).forEach(key => {
@@ -36,6 +36,7 @@ const $$ = document.querySelectorAll.bind(document);
     $(".reset").addEventListener("click", () => {
         initPos();
         initGame();
+        initStatus()
     })
 })()
 
