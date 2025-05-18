@@ -2,6 +2,7 @@
   "devDependencies": {
     "@rollup/plugin-html": "^1.1.0",
     "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
     "rollup-plugin-postcss": "^4.0.2"
   }
 }
