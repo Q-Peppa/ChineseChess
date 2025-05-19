@@ -1,5 +1,8 @@
 # ChineseChess
 
+## 项目说明
+本项目未使用前端框架，仅使用JavaScript和CSS进行开发，适合前端新手上手。
+
 ## 开发
 本项目开发需要安装一个服务器、推荐使用 [serve](https://www.npmjs.com/package/serve)
 
@@ -25,13 +28,9 @@ npm install postcss @rollup/plugin-html rollup-plugin-postcss --save-dev
 - 将杀的简单判断
 
 ## 尚未实现的功能
-- 走子 / 吃子 的合法性
 - 更好的将杀判断
 - 点击棋子后，提示可以移动的位置信息
 - 每走一步之后棋谱的录入
-
-## 项目说明
-本项目未使用前端框架，仅使用JavaScript和CSS进行开发，适合前端新手上手。
 
 
 ## 项目截图

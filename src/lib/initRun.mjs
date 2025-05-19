@@ -71,7 +71,9 @@ const fn = (event) => {
           drawChessPos(blackMap, false);
         }
       } else {
-        console.log(`check`, check);
+        const p = (document.createElement("p").textContent = check);
+        document.querySelector(".status").append(p);
+
         selectedChess = null;
         return;
       }
@@ -103,7 +105,8 @@ const fn = (event) => {
           drawChessPos(redMap, true);
         }
       } else {
-        console.log(`check`, check);
+        const p = (document.createElement("p").textContent = check);
+        document.querySelector(".status").append(p);
         selectedChess = null;
         return;
       }

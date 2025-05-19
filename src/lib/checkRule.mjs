@@ -1,5 +1,15 @@
 import RULE from "./RULE.mjs";
 import { blackMap, redMap } from "./pos.mjs";
+import { CHESS_NAME } from "./constant.js";
+import {
+  isValidAdvisorMove,
+  isValidCannonMove,
+  isValidElephantMove,
+  isValidGeneralMove,
+  isValidHorseMove,
+  isValidPawnMove,
+  isValidRookMove,
+} from "./move.js";
 
 /**
  * @description 检测此次行棋是否合理
@@ -9,6 +19,7 @@ import { blackMap, redMap } from "./pos.mjs";
  * @return { undefined | keyof RULE }
  */
 const checkRule = (turn, preDom, nextDom) => {
+  const name = preDom.textContent.trim();
   /**  上一个选中的棋子是红色 */
   const isPreRed = preDom.classList.contains("red-chess");
   /**  下一个选中的棋子是红色 */
@@ -19,6 +30,10 @@ const checkRule = (turn, preDom, nextDom) => {
   const isNextBlack = nextDom.classList.contains("black-chess");
   /**  下一个选中的棋子是空白格子 */
   const isNextEmpty = nextDom.classList.contains("placeholder-chess");
+  const preX = preDom.getAttribute("data-x");
+  const preY = preDom.getAttribute("data-y");
+  const nextX = nextDom.getAttribute("data-x");
+  const nextY = nextDom.getAttribute("data-y");
 
   const status = document.querySelector(".status p");
   const text = document.createElement("p");
@@ -35,11 +50,40 @@ const checkRule = (turn, preDom, nextDom) => {
     return RULE.EAT_SELF;
   }
 
-  if ((isPreRed && isNextEmpty) || (isPreBlack && isNextEmpty)) {
-    return undefined;
+  if (
+    (isPreRed && (isNextEmpty || isNextBlack)) ||
+    (isPreBlack && (isNextEmpty || isNextRed))
+  ) {
+    const color = isPreRed ? "red" : "black";
+    switch (name) {
+      case CHESS_NAME.red_soldier:
+      case CHESS_NAME.soldier:
+        return isValidPawnMove(preX, preY, nextX, nextY, color);
+      case CHESS_NAME.horse:
+      case CHESS_NAME.red_horse:
+        return isValidHorseMove(preX, preY, nextX, nextY);
+      case CHESS_NAME.cannon:
+      case CHESS_NAME.red_cannon:
+        return isValidCannonMove(
+          preX,
+          preY,
+          nextX,
+          nextY,
+          /* isCapture =  !isNextEmpty  */ !isNextEmpty,
+        );
+      case CHESS_NAME.rook:
+        return isValidRookMove(preX, preY, nextX, nextY);
+      case CHESS_NAME.elephant:
+      case CHESS_NAME.red_elephant:
+        return isValidElephantMove(preX, preY, nextX, nextY, color);
+      case CHESS_NAME.advisor:
+      case CHESS_NAME.red_advisor:
+        return isValidAdvisorMove(preX, preY, nextX, nextY, color);
+      case CHESS_NAME.general:
+      case CHESS_NAME.red_general:
+        return isValidGeneralMove(preX, preY, nextX, nextY, color);
+    }
   }
-  if (isPreRed && isNextBlack) return undefined;
-  if (isPreBlack && isNextRed) return undefined;
   return false;
 };
 
