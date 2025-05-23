@@ -6,6 +6,7 @@ const $$ = document.querySelectorAll.bind(document);
 
 (function () {
   function initGame() {
+
     drawChessPos(blackMap, false);
     drawChessPos(redMap, true);
     $$(".placeholder-chess").forEach((el) => {
