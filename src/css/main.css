@@ -110,10 +110,22 @@ body {
   left: 800px;
   top: 400px;
 }
-div.chess.placeholder-chess {
+#app .chess.placeholder-chess {
   /*display: none !important;*/
-  background: transparent !important;
+  background: transparent;
   color: transparent !important;
+}
+#app .chess.placeholder-chess.can-move {
+  background: rgba(255, 255, 100, 0.5); /* 偏黄色半透明 */
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 8px 2px rgba(255, 255, 100, 0.6);
+  border: 2px solid rgba(255, 220, 80, 0.7);
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+  transform: scale(0.88); /* 缩小到88% */
+  z-index: 10; /* 可选，确保高亮在上层 */
 }
 .group {
   position: absolute;

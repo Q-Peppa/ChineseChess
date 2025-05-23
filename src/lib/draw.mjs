@@ -67,7 +67,7 @@ export function drawChessPos(it, isRed = false) {
   if (isRed) removeAllRed();
   else removeAllBlack();
   Object.keys(it).forEach((key) => {
-    it[key].forEach(([x, y], ) => {
+    it[key].forEach(([x, y]) => {
       const div = createChess(key, x, y, isRed ? "red-chess" : "black-chess");
       document.getElementById("app").appendChild(div);
     });

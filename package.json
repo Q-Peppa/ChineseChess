@@ -4,5 +4,8 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "scripts": {
+    "prettier" : "prettier -w **/*.mjs **/*.html **/*.css"
   }
 }

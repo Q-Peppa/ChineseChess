@@ -1,5 +1,5 @@
 import RULE from "./RULE.mjs";
-import { isBlank } from "./lib.mjs";
+import { isBlankPos } from "./lib.mjs";
 export function isValidGeneralMove(preX, preY, nextX, nextY, color = "black") {
   preX = Number(preX);
   preY = Number(preY);
@@ -54,7 +54,6 @@ export function isValidElephantMove(
   preY,
   nextX,
   nextY,
-  isEmptyFunc,
   color = "black",
 ) {
   // 必须走田字格（斜着走两格）
@@ -73,7 +72,7 @@ export function isValidElephantMove(
   // 象眼不能被堵
   const eyeX = preX + dx / 2;
   const eyeY = preY + dy / 2;
-  if (!isEmptyFunc(eyeX, eyeY)) return RULE.ELEPHANT_BLOCKED;
+  if (!isBlankPos(eyeX, eyeY)) return RULE.ELEPHANT_BLOCKED;
 
   return undefined;
 }
@@ -93,14 +92,14 @@ export function isValidRookMove(preX, preY, nextX, nextY) {
     const minY = Math.min(preY, nextY) + 1;
     const maxY = Math.max(preY, nextY);
     for (let y = minY; y < maxY; y++) {
-      if (!isBlank(preX, y)) return RULE.ROOK_STOP;
+      if (!isBlankPos(preX, y)) return RULE.ROOK_STOP;
     }
   } else {
     // 纵向
     const minX = Math.min(preX, nextX) + 1;
     const maxX = Math.max(preX, nextX);
     for (let x = minX; x < maxX; x++) {
-      if (!isBlank(x, preY)) return RULE.ROOK_STOP;
+      if (!isBlankPos(x, preY)) return RULE.ROOK_STOP;
     }
   }
 
@@ -122,14 +121,14 @@ export function isValidCannonMove(preX, preY, nextX, nextY, isCapture) {
     const minY = Math.min(preY, nextY) + 1;
     const maxY = Math.max(preY, nextY);
     for (let y = minY; y < maxY; y++) {
-      if (!isBlank(preX, y)) count++;
+      if (!isBlankPos(preX, y)) count++;
     }
   } else {
     // 纵向移动
     const minX = Math.min(preX, nextX) + 1;
     const maxX = Math.max(preX, nextX);
     for (let x = minX; x < maxX; x++) {
-      if (!isBlank(x, preY)) count++;
+      if (!isBlankPos(x, preY)) count++;
     }
   }
 
@@ -159,11 +158,11 @@ export function isValidHorseMove(preX, preY, nextX, nextY) {
   if (Math.abs(dx) === 2) {
     // 横向跳，两步方向的中间点
     const blockX = preX + dx / 2;
-    if (!isBlank(blockX, preY)) return RULE.HORSE_MOVE2;
+    if (!isBlankPos(blockX, preY)) return RULE.HORSE_MOVE2;
   } else {
     // 纵向跳，两步方向的中间点
     const blockY = preY + dy / 2;
-    if (!isBlank(preX, blockY)) return RULE.HORSE_MOVE2;
+    if (!isBlankPos(preX, blockY)) return RULE.HORSE_MOVE2;
   }
 
   return undefined;

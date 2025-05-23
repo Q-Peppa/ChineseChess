@@ -10,7 +10,8 @@ import {
   isValidPawnMove,
   isValidRookMove,
 } from "./move.js";
-
+import { isBlack, isBlankPos, isRed } from "./lib.mjs";
+Array.prototype.flat();
 /**
  * @description 检测此次行棋是否合理
  * @param { 0 | 1 } turn
@@ -22,18 +23,20 @@ const checkRule = (turn, preDom, nextDom) => {
   const name = preDom.textContent.trim();
   /**  上一个选中的棋子是红色 */
   const isPreRed = preDom.classList.contains("red-chess");
-  /**  下一个选中的棋子是红色 */
-  const isNextRed = nextDom.classList.contains("red-chess");
   /**  上一个选中的棋子是黑色 */
   const isPreBlack = preDom.classList.contains("black-chess");
-  /**  下一个选中的棋子是黑色 */
-  const isNextBlack = nextDom.classList.contains("black-chess");
-  /**  下一个选中的棋子是空白格子 */
-  const isNextEmpty = nextDom.classList.contains("placeholder-chess");
+
   const preX = preDom.getAttribute("data-x");
   const preY = preDom.getAttribute("data-y");
   const nextX = nextDom.getAttribute("data-x");
   const nextY = nextDom.getAttribute("data-y");
+
+  /**  下一个选中的棋子是空白格子 */
+  const isNextEmpty = isBlankPos(nextX, nextY);
+  /**  下一个选中的棋子是黑色 */
+  const isNextBlack = isBlack(nextX, nextY);
+  /**  下一个选中的棋子是红色 */
+  const isNextRed = isRed(nextX, nextY);
 
   const status = document.querySelector(".status p");
   const text = document.createElement("p");
