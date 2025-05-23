@@ -19,5 +19,6 @@ const RULE = {
   ADVISOR_PALACE: "士/仕不能出九宫格",
   GENERAL_STEP: "将/帅每步只能横或竖走一格",
   GENERAL_PALACE: "将/帅不能出九宫格",
+  UNKNOWN: "未知错误"
 };
 export default RULE;

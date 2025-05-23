@@ -1,4 +1,4 @@
-import { CHESS_NAME } from "./constant.js";
+import {CHESS_NAME} from "./constant.js";
 
 const initBlack = {
   [CHESS_NAME.rook]: [
@@ -30,13 +30,12 @@ const initBlack = {
     [3, 8],
   ], // 五个黑卒
 };
-
-const initRed = {
-  [CHESS_NAME.red_rook || CHESS_NAME.rook]: [
+const intRed = {
+ [CHESS_NAME.red_rook]: [
     [9, 0],
     [9, 8],
   ], // 红车
-  [CHESS_NAME.red_horse || CHESS_NAME.horse]: [
+  [CHESS_NAME.red_horse]: [
     [9, 1],
     [9, 7],
   ], // 红马
@@ -61,46 +60,30 @@ const initRed = {
     [6, 8],
   ], // 五个红兵
 };
-
-// 兼容你的 CHESS_NAME，如果没有 red_rook/red_horse 用原有的
-if (!CHESS_NAME.red_rook) {
-  initRed[CHESS_NAME.rook] = [
-    [9, 0],
-    [9, 8],
-  ];
-}
-if (!CHESS_NAME.red_horse) {
-  initRed[CHESS_NAME.horse] = [
-    [9, 1],
-    [9, 7],
-  ];
-}
-
 const initEmpty = [];
+export const blackMap = {
+  ...structuredClone(initBlack),
+};
+
+export const redMap = {
+  ...structuredClone(intRed),
+};
+
 for (let i = 0; i <= 9; i++) {
   for (let j = 0; j <= 8; j++) {
     initEmpty.push([i, j]);
   }
 }
 
-export const blackMap = {
-  ...structuredClone(initBlack),
-};
-
-export const redMap = {
-  ...structuredClone(initRed),
-};
-
 export const emptyMap = {
   EM: structuredClone(initEmpty),
 };
-
 export const initPos = () => {
   for (const key in blackMap) {
     blackMap[key] = structuredClone(initBlack[key]);
   }
   for (const key in redMap) {
-    redMap[key] = structuredClone(initRed[key]);
+    redMap[key] = structuredClone(intRed[key]);
   }
   emptyMap["EM"] = structuredClone(initEmpty);
 };

@@ -72,9 +72,10 @@ const checkRule = (turn, preDom, nextDom) => {
           preY,
           nextX,
           nextY,
-          /* isCapture =  !isNextEmpty  */ !isNextEmpty,
+          !isNextEmpty,
         );
       case CHESS_NAME.rook:
+      case CHESS_NAME.red_rook:
         return isValidRookMove(preX, preY, nextX, nextY);
       case CHESS_NAME.elephant:
       case CHESS_NAME.red_elephant:
@@ -87,12 +88,12 @@ const checkRule = (turn, preDom, nextDom) => {
         return isValidGeneralMove(preX, preY, nextX, nextY, color);
     }
   }
-  return false;
+  return RULE.UNKNOWN;
 };
 
 export const checkPlayerWin = () => {
-  if (blackMap["将"].length === 0) return 0;
-  if (redMap["帅"].length === 0) return 1;
+  if (blackMap[CHESS_NAME.general].length === 0) return 0;
+  if (redMap[CHESS_NAME.red_general].length === 0) return 1;
   return -1;
 };
 export default checkRule;

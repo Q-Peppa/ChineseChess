@@ -63,6 +63,7 @@ const highLightPossiblePos = (nextX, nextY, preDom) => {
       res = isValidCannonMove(preX, preY, x, y, !isBlankPos(x, y));
       break;
     case CHESS_NAME.rook:
+    case CHESS_NAME.red_rook:
       res = isValidRookMove(preX, preY, x, y);
       break;
     case CHESS_NAME.elephant:
